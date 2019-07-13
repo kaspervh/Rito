@@ -1,11 +1,15 @@
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+	<!-- Required meta tags for bootstrap -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- importing trix editor -->
+		<!-- trix js -->
+	<script src="//cdn.ckeditor.com/4.12.1/basic/ckeditor.js"></script>
 
     <title>Rito</title>
   </head>
@@ -19,7 +23,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="/new_language.php">Tilføj sprog</a>
       </li>    
     </ul>
   </div>
