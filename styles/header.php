@@ -23,7 +23,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/new_language.php">Tilføj sprog</a>
+        <a class="nav-link" href="#"></a>
       </li>    
     </ul>
   </div>
