@@ -1,7 +1,7 @@
 <?php
   require('config/routes.php');
   require('config/queries.php');
-  require('styles/header.php');
+  require('shared/header.php');
 
   $id = $_GET['products_id'];
 
@@ -10,11 +10,11 @@
   $params = getProductDescription($id);
 
   if(isset($_POST['submit'])){
-    update_or_create_products_and_descriptions($_POST);
+    updateOrCreateProductsAndDescriptions($_POST);
   }
   
 ?>
 
-<?php require('styles/form.php'); ?>
+<?php require('shared/form.php'); ?>
 
-<?php require('styles/footer.php'); ?>
+<?php require('shared/footer.php'); ?>

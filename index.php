@@ -1,10 +1,14 @@
-<?php 
+<?php
+  require('shared/header.php');
   require('config/routes.php');
   require('config/queries.php');
   $products = getProductInfo();
+
+  if (isset($_POST)) {
+    deleteProductAndDescriptions($_POST);
+  }
 ?>
 
-<?php require('styles/header.php'); ?>
   <div class="container">
     <table class="table">
       <thead>
@@ -21,11 +25,18 @@
           <td><?php echo $product['products_reference'] ?></td>
           <td><?php echo $product['products_description_name'] ?></td>
           <td><?php echo $product['products_price'] ?></td>
-          <td><a href="edit.php?products_id=<?php echo $product['products_id'] ?>" class='btn btn-primary'>Rediger</a></td>
-          <td><a href="#" class='btn btn-danger'>Slet</a></td>
+          <td><a href="edit.php?products_id=<?php echo $product['products_id'] ?>" class='btn btn-primary' onclick=";">Rediger</a></td>
+          <td>
+            <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+              <input type="hidden" name="products_id" value="<?php echo $product['products_id']; ?>">
+              <input type="submit" name="submit" value="Slet" class="btn btn-danger" onClick="return confirm('Er du sikker på at du vil slette produktet og dets beskrivelser?')" >
+            </form>
+            
+          </td>
         </tr>
       <?php endforeach; ?>
     </table>
     <a href="<?php echo new_product_path; ?>" class='btn btn-primary'>Nyt produkt</a>
   </div>
-<?php require('/styles/footer.php'); ?>
+
+<?php require('shared/footer.php'); ?>

@@ -79,9 +79,8 @@
   if it does the description will be updated
   if not it will create new description with the language_id and product_id
   */
-  function update_or_create_products_and_descriptions($params){
+  function updateOrCreateProductsAndDescriptions($params){
     require('db.php');
-    require('routes.php');
 
     // will get the products id from new product
     $products_id = '';
@@ -98,9 +97,7 @@
       $query = "INSERT INTO products (products_reference, products_price) VALUES ({$params['products_reference']}, {$params['products_price']})";
     }
 
-    if(mysqli_query($con, $query)){
-      #nothing
-    }else{
+    if(!mysqli_query($con, $query)){
       echo mysqli_error($con);
     }
 
@@ -140,22 +137,33 @@
       if it does the code will update the existing product description
       if it does not the code will create a new product description
       */
-      if(false){
+      $description = mysqli_query($con, "SELECT * FROM products_description WHERE products_id = '{$arr['products_id']}' AND languages_id = '{$arr['languages_id']}'");
+      $result = mysqli_fetch_assoc($description);
+      mysqli_free_result($result);
+      if($result){
         $query = "UPDATE products_description SET products_description_name = '{$arr['products_description_name']}', products_description_short_description = '{$arr['products_description_short_description']}', products_description_description = '{$arr['products_description_description']}' WHERE languages_id = {$arr['languages_id']} AND products_id = {$arr['products_id']}";
       }else{
         $query = "INSERT INTO products_description (products_id, languages_id, products_description_name, products_description_short_description, products_description_description) VALUES ('{$arr['products_id']}', '{$arr['languages_id']}', '{$arr['products_description_name']}', '{$arr['products_description_short_description']}', '{$arr['products_description_description']}' )";
       }
 
-      if(mysqli_query($con, $query)){
-        #nothing
-      }else{
+      if(!mysqli_query($con, $query)){
         echo mysqli_error($con);
       }
     } 
 
     mysqli_close($con);
 
-    header("Location: index.php");
+    header("Location:index.php");
   }
 
+  // will delete products and its product descriptions
+  function deleteProductAndDescriptions($params){
+    require('db.php');
+
+    mysqli_query($con, "DELETE FROM products WHERE products_id = {$params['products_id']}");
+    if(mysqli_query($con, "DELETE FROM products_description WHERE products_id = {$params['products_id']}")){
+      mysqli_close($con);
+      header('location: /');
+    }
+  }
 ?>

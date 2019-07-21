@@ -8,7 +8,7 @@
         <br>
         <label>Pris</label>
         <br>
-        <input type="string" name="products_price" value="<?php echo $product['products_price']; ?>">
+        <input type="text" name="products_price" value="<?php echo $product['products_price']; ?>">
         <br>
         <br>
         
